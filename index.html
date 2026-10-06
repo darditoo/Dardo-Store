@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoStore - Ventas de Tecnologías en Línea</title>
+    <!-- Librería de Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Librería externa para generar código QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Hoja de Estilos Personalizada -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <h1>Dardo Store - Ventas en Línea</h1>
+        <nav class="menu principal">
+            <ul>
+                <li>Inicio</li>
+                <li>¿Quienes Somos?</li>
+                <li>Productos
+                    <ul>
+                        <li>Laptop</li>
+                        <li>Tablet</li>
+                        <li>PC</li>
+                    </ul>
+                </li>
+                <li>Pedidos
+                    <ul>
+                        <li>Por Menor</li>
+                        <li>Por Mayor</li>
+                        <li>Por Unidad</li>
+                        <li id="menu-agendar-pedido" class="highlight-menu"><i class="fa-solid fa-cart-shopping"></i> Agendar Pedido</li>
+                    </ul>
+                </li>
+                <li>Sucursales
+                    <ul>
+                        <li>Lima</li>
+                        <li>Chiclayo</li>
+                        <li>Tarapoto</li>
+                        <li>Cajamarca</li>
+                        <li>Huancayo</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- Icono de Carrito en el Header -->
+        <div id="header-carrito-btn" class="header-carrito">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="contador-carrito">0</span>
+        </div>
+    </header>
+
+    <div class="contenedor">
+        <!-- Sección de presentación de tecnologías -->
+        <div class="subcontenedor">
+            <div class="xcontenedor">
+                <h2>Inteligencia Artificial y Hardware</h2>
+                <img src="imagenes/foto1.jpg" alt="Inteligencia Artificial">
+                <p>Equipos optimizados para procesamiento de redes neuronales, machine learning y tarjetas aceleradoras de última generación para potenciar tu empresa o proyectos avanzados.</p>
+            </div>
+            
+            <div class="xcontenedor">
+                <h2>Ecosistema de Redes y Conectividad</h2>
+                <img src="imagenes/foto2.jpg" alt="Redes Sociales y Conectividad">
+                <p>Dispositivos de red de alta velocidad, routers Wi-Fi 7, switches administrables y sistemas de seguridad informática de grado corporativo con soporte especializado.</p>
+            </div>
+            
+            <div class="xcontenedor">
+                <h2>Cloud Computing & Hosting</h2>
+                <img src="imagenes/foto3.jpg" alt="Ventas de Hosting y Servidores">
+                <p>Servidores dedicados de alto rendimiento en la nube, infraestructura escalable NVMe y planes de web hosting optimizados para máxima velocidad y uptime del 99.9%.</p>
+            </div>
+        </div>
+
+        <!-- NUEVA SECCIÓN: CATÁLOGO DE PRODUCTOS TECNOLÓGICOS -->
+        <section class="seccion-catalogo">
+            <div class="catalogo-header">
+                <h2><i class="fa-solid fa-store"></i> Catálogo de Productos Tecnológicos</h2>
+                <p>Elige tus dispositivos favoritos y agrégalos al carrito para agendar tu pedido de inmediato.</p>
+            </div>
+            
+            <div id="productos-grid" class="productos-grid">
+                <!-- Los productos se inyectarán dinámicamente desde JavaScript -->
+            </div>
+        </section>
+
+        <!-- Botón de Acceso Directo para Agendar Pedido -->
+        <section class="seccion-cta-pedido">
+            <div class="cta-banner">
+                <h2><i class="fa-solid fa-truck-fast"></i> ¿Listo para adquirir tu tecnología?</h2>
+                <p>Agenda tu pedido en línea de forma rápida y segura con envíos a Lima, Chiclayo, Tarapoto, Cajamarca, Huancayo y todo el país.</p>
+                <button id="btn-abrir-formulario" class="btn-principal-accion">Agendar mi Pedido Ahora</button>
+            </div>
+        </section>
+
+        <!-- Sección de Código QR y Compartir -->
+        <section class="seccion-qr">
+            <div class="qr-card">
+                <h2><i class="fa-solid fa-qrcode"></i> Escanea para Visitar la Web</h2>
+                <p>Lleva nuestra tienda tecnológica contigo. Escanea el código QR con la cámara de tu smartphone:</p>
+                <div id="codigo-qr" class="qr-box"></div>
+                <span class="qr-url-text">https://dardostore.com</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- PANEL LATERAL DEL CARRITO DE COMPRAS -->
+    <div id="carrito-overlay" class="carrito-overlay carrito-hidden">
+        <div id="carrito-drawer" class="carrito-drawer">
+            <div class="carrito-header">
+                <h2><i class="fa-solid fa-bag-shopping"></i> Tu Carrito de Compras</h2>
+                <button id="carrito-cerrar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="carrito-items-container" class="carrito-items-container">
+                <!-- Elementos del carrito cargados dinámicamente -->
+                <div class="carrito-vacio">Tu carrito está vacío</div>
+            </div>
+
+            <div class="carrito-footer">
+                <div class="carrito-total-row">
+                    <span>Total Estimado:</span>
+                    <span id="carrito-total-precio">S/ 0.00</span>
+                </div>
+                <button id="btn-proceder-pedido" class="btn-proceder-pedido" disabled>
+                    <i class="fa-solid fa-clipboard-check"></i> Proceder a Agendar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE FORMULARIO PARA AGENDAR PEDIDOS -->
+    <div id="modal-pedido" class="modal-overlay modal-hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-clipboard-list"></i> Formulario de Agendamiento de Pedido</h2>
+                <button id="modal-cerrar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-agendar-pedido">
+                <div class="form-grupo">
+                    <label for="input-nombre"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
+                    <input type="text" id="input-nombre" required placeholder="Ej. Carlos Mendoza Pérez">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-grupo">
+                        <label for="input-telefono"><i class="fa-solid fa-phone"></i> Teléfono / Celular *</label>
+                        <input type="tel" id="input-telefono" required placeholder="Ej. 987654321">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="input-correo"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
+                        <input type="email" id="input-correo" required placeholder="Ej. correo@empresa.com">
+                    </div>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="input-direccion"><i class="fa-solid fa-location-dot"></i> Dirección de Entrega *</label>
+                    <input type="text" id="input-direccion" required placeholder="Ej. Av. Javier Prado 1200, San Isidro">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-grupo">
+                        <label for="select-producto"><i class="fa-solid fa-laptop"></i> Producto o Carrito *</label>
+                        <select id="select-producto" required>
+                            <option value="">Selecciona un producto...</option>
+                            <option value="Laptop de Alta Gama">Laptop de Alta Gama / IA</option>
+                            <option value="Tablet Profesional">Tablet Profesional</option>
+                            <option value="PC de Escritorio Gamer">PC de Escritorio / Estación de Trabajo</option>
+                            <option value="Servidor Cloud Hosting">Servidor Cloud / Hosting NVMe</option>
+                            <option value="Equipos de Red y Conectividad">Equipos de Red y Conectividad Wi-Fi 7</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label for="select-sucursal"><i class="fa-solid fa-shop"></i> Sucursal de Origen / Destino *</label>
+                        <select id="select-sucursal" required>
+                            <option value="">Selecciona una sucursal...</option>
+                            <option value="Lima">Lima</option>
+                            <option value="Chiclayo">Chiclayo</option>
+                            <option value="Tarapoto">Tarapoto</option>
+                            <option value="Cajamarca">Cajamarca</option>
+                            <option value="Huancayo">Huancayo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="input-observaciones"><i class="fa-solid fa-comment-dots"></i> Observaciones o Requerimientos</label>
+                    <textarea id="input-observaciones" rows="3" placeholder="Especificaciones adicionales, requerimiento de factura, etc."></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar-pedido">Confirmar y Agendar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CHATBOX FLOTANTE DE 50 PREGUNTAS TECNOLÓGICAS -->
+    <div id="chatbox-container">
+        <div id="chatbox-toggle-btn" aria-label="Abrir Asistente Tecnológico">
+            <i class="fa-solid fa-robot"></i>
+            <span class="chat-badge">50 Q&A</span>
+        </div>
+        
+        <div id="chatbox-window" class="chatbox-hidden">
+            <div class="chatbox-header">
+                <div class="chatbox-title-info">
+                    <i class="fa-solid fa-microchip"></i>
+                    <div>
+                        <h3>Asistente Dardo Bot</h3>
+                        <span class="chat-status">● En línea (50 Preguntas)</span>
+                    </div>
+                </div>
+                <button id="chatbox-close-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="chatbox-body" id="chatbox-messages">
+                <div class="chat-msg bot-msg">
+                    ¡Hola! Soy tu asistente virtual experto en tecnología. Selecciona una pregunta frecuente del menú o añade productos a tu carrito de compras.
+                </div>
+            </div>
+
+            <!-- Menú interactivo con acceso a las 50 preguntas categorizadas -->
+            <div class="chatbox-quick-menu">
+                <input type="text" id="chat-search-input" placeholder="Buscar entre las 50 preguntas frecuentes...">
+                <div id="preguntas-sugeridas-list">
+                    <!-- Inyectado dinámicamente desde JS -->
+                </div>
+            </div>
+
+            <div class="chatbox-footer">
+                <input type="text" id="chat-user-input" placeholder="Escribe tu consulta tecnológica...">
+                <button id="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Derechos Reservados - Mathias Huayanay &copy; 2026 - Dardo Store Ventas en línea</p>
+            <div class="redes-sociales">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://whatsapp.com" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Interactividad Dinámica -->
+    <script src="index.js"></script>
+</body>
+</html>

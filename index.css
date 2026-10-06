@@ -1,0 +1,1072 @@
+/* ==========================================
+   ESTILOS GENERALES Y VARIABLES
+   ========================================== */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --accent-color: #06b6d4;
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #263548;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   ENCABEZADO, NAVEGACIÓN Y CARRITO HEADER
+   ========================================== */
+header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+nav.menu.principal ul {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav.menu.principal ul li {
+    position: relative;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+}
+
+nav.menu.principal ul li:hover {
+    background-color: rgba(37, 99, 235, 0.15);
+    border-color: var(--primary-color);
+    color: #60a5fa;
+}
+
+nav.menu.principal ul li.highlight-menu {
+    background-color: rgba(6, 182, 212, 0.15);
+    border-color: var(--accent-color);
+    color: #38bdf8;
+}
+
+/* Submenús desplegables */
+nav.menu.principal ul li ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    min-width: 185px;
+    display: none;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    z-index: 100;
+    margin-top: 5px;
+}
+
+nav.menu.principal ul li:hover ul {
+    display: flex;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+nav.menu.principal ul li ul li {
+    padding: 0.5rem 1.2rem;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0;
+    color: var(--text-muted);
+}
+
+nav.menu.principal ul li ul li:hover {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    padding-left: 1.5rem;
+}
+
+/* Botón de Carrito en el Header */
+.header-carrito {
+    background-color: rgba(37, 99, 235, 0.2);
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.header-carrito:hover {
+    background-color: var(--primary-color);
+}
+
+.header-carrito i {
+    color: #60a5fa;
+    font-size: 1.1rem;
+    transition: var(--transition-smooth);
+}
+
+.header-carrito:hover i {
+    color: white;
+}
+
+#contador-carrito {
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================
+   CONTENEDORES Y CATÁLOGO DE PRODUCTOS
+   ========================================== */
+.contenedor {
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.subcontenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.xcontenedor {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.xcontenedor h2 {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.xcontenedor img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.xcontenedor p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Sección Catálogo */
+.seccion-catalogo {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.catalogo-header {
+    text-align: center;
+}
+
+.catalogo-header h2 {
+    font-size: 1.8rem;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.catalogo-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.producto-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.producto-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.producto-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.producto-card .precio {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #34d399;
+}
+
+.producto-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    flex: 1;
+}
+
+.btn-agregar-carrito {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-agregar-carrito:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+}
+
+/* Banner CTA para Agendar Pedido */
+.seccion-cta-pedido {
+    display: flex;
+    justify-content: center;
+}
+
+.cta-banner {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+    border: 1px solid rgba(37, 99, 235, 0.4);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.cta-banner h2 {
+    font-size: 1.6rem;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cta-banner p {
+    color: var(--text-muted);
+    max-width: 600px;
+}
+
+.btn-principal-accion {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    margin-top: 0.5rem;
+}
+
+.btn-principal-accion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+}
+
+/* Estilos de la Tarjeta de Código QR */
+.seccion-qr {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.qr-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, #162235 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.qr-card h2 {
+    font-size: 1.3rem;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.qr-box {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.qr-url-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: monospace;
+    background: rgba(0,0,0,0.2);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* ==========================================
+   ESTILOS DEL PANEL LATERAL (CARRITO)
+   ========================================== */
+.carrito-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2500;
+    display: flex;
+    justify-content: flex-end;
+    transition: all 0.3s ease;
+}
+
+.carrito-overlay.carrito-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.carrito-drawer {
+    background-color: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.carrito-overlay.carrito-hidden .carrito-drawer {
+    transform: translateX(100%);
+}
+
+.carrito-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.carrito-header h2 {
+    font-size: 1.2rem;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#carrito-cerrar-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+#carrito-cerrar-btn:hover {
+    color: white;
+}
+
+.carrito-items-container {
+    flex: 1;
+    padding: 1.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.carrito-vacio {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 3rem;
+}
+
+.carrito-item-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.carrito-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.carrito-item-nombre {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.carrito-item-precio {
+    font-size: 0.9rem;
+    color: #34d399;
+    font-weight: 700;
+}
+
+.carrito-item-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.3rem;
+}
+
+.carrito-controles-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-qty {
+    background-color: #334155;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-qty:hover {
+    background-color: var(--primary-color);
+}
+
+.carrito-item-eliminar {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.carrito-footer {
+    padding: 1.25rem;
+    background-color: #162032;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.carrito-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.carrito-total-row span:last-child {
+    color: #34d399;
+}
+
+.btn-proceder-pedido {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.btn-proceder-pedido:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+.btn-proceder-pedido:not(:disabled):hover {
+    filter: brightness(1.1);
+}
+
+/* ==========================================
+   ESTILOS DE LA VENTANA MODAL DEL FORMULARIO
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#modal-cerrar-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+#modal-cerrar-btn:hover {
+    color: white;
+}
+
+#form-agendar-pedido {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-grupo label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-grupo label i {
+    color: #60a5fa;
+}
+
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus {
+    border-color: var(--primary-color);
+    background-color: rgba(37, 99, 235, 0.05);
+}
+
+.form-grupo select option {
+    background-color: var(--bg-card);
+    color: white;
+}
+
+.btn-enviar-pedido {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.btn-enviar-pedido:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+}
+
+/* ==========================================
+   ESTILOS DEL CHATBOX FLOTANTE
+   ========================================== */
+#chatbox-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1500;
+}
+
+#chatbox-toggle-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+#chatbox-toggle-btn:hover {
+    transform: scale(1.08);
+}
+
+.chat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 2px solid var(--bg-dark);
+}
+
+#chatbox-window {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 360px;
+    height: 500px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom right;
+}
+
+#chatbox-window.chatbox-hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.chatbox-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chatbox-title-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.chatbox-title-info i {
+    font-size: 1.5rem;
+    color: #60a5fa;
+}
+
+.chatbox-title-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.chat-status {
+    font-size: 0.75rem;
+    color: #34d399;
+}
+
+#chatbox-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+#chatbox-close-btn:hover {
+    color: white;
+}
+
+.chatbox-body {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: rgba(15, 23, 42, 0.4);
+}
+
+.chat-msg {
+    max-width: 85%;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    animation: fadeIn 0.2s ease;
+}
+
+.bot-msg {
+    background-color: #334155;
+    color: var(--text-main);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.user-msg {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.chatbox-quick-menu {
+    padding: 0.5rem 0.8rem;
+    background-color: #162032;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#chat-search-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+#chat-search-input:focus {
+    border-color: var(--primary-color);
+}
+
+#preguntas-sugeridas-list {
+    max-height: 90px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pregunta-chip {
+    background-color: rgba(37, 99, 235, 0.15);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    color: #93c5fd;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-align: left;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pregunta-chip:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.chatbox-footer {
+    padding: 0.75rem;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.5rem;
+}
+
+#chat-user-input {
+    flex: 1;
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+#chat-user-input:focus {
+    border-color: var(--primary-color);
+}
+
+#chat-send-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chat-send-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ==========================================
+   PIE DE PÁGINA Y REDES SOCIALES
+   ========================================== */
+footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.redes-sociales a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+}
+
+.redes-sociales a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+}
+
+/* ==========================================
+   ANIMACIONES
+   ========================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 4rem;
+    }
+    header h1 {
+        text-align: left;
+    }
+}
